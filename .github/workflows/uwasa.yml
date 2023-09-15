@@ -2,7 +2,7 @@ name: uwasa
 
 on:
   schedule:
-    - cron: '2,9,18,36 * * * *'
+    - cron: '2,9,18,36,54 * * * *'
 
 permissions:
   contents: write
@@ -26,5 +26,4 @@ jobs:
         run: |
           git config --global user.name 'Uwasa'
           git config --global user.email 'uwasa@cirno.name'
-          git commit -a -m "update announcements"
-          git push || true
+          git commit -a -m "update announcements" && git push || true
