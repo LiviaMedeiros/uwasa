@@ -34,7 +34,7 @@ let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'j
 
 Object.assign(announcements, { id });
 
-const getAnnouncements = async (n = 9) => {
+const getAnnouncements = async () => {
   const response = await fetch(PATH_TO_ANNOUNCEMENTS_FILE, {
     method: 'GET',
     headers: {
@@ -44,12 +44,7 @@ const getAnnouncements = async (n = 9) => {
     }
   });
   if (response.status === 304) return [{ id }];
-  if (!response.ok) throw response;
-  if (!/application\/json/.test(response.headers.get('Content-Type'))) {
-    if (n --> 0)
-      return new Promise($ => setTimeout(() => $(getAnnouncements(n)), 1e4));
-    throw new TypeError(`Expected JSON, got ${response.headers.get('Content-Type')}`);
-  }
+  if (!(response.ok && response.headers.get('Content-Type')?.startsWith('application/json'))) throw response;
   const data = await response.json();
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
