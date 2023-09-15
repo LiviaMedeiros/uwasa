@@ -135,3 +135,5 @@ const tick = async () => {
 }
 
 const lastId = await tick();
+
+await Bun.write(Bun.stdout, lastId);

@@ -13,8 +13,19 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun uwasa.mjs
+      - name: Uwasa
+        id: uwasa
+        run: bun uwasa.mjs
         env:
           UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
           UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
           UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
+      - name: PR
+        id: pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: update announcements
+          committer: Uwasa <uwasa@cirno.name>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: Update announcements
+          body: Doublecheck me
