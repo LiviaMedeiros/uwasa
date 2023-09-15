@@ -45,8 +45,11 @@ const getAnnouncements = async (n = 9) => {
   });
   if (response.status === 304) return [{ id }];
   if (!response.ok) throw response;
-  if (!/application\/json/.test(response.headers.get('Content-Type')))
-    return new Promise($ => setTimeout(() => $(getAnnouncements(--n)), 1e4));
+  if (!/application\/json/.test(response.headers.get('Content-Type'))) {
+    if (n --> 0)
+      return new Promise($ => setTimeout(() => $(getAnnouncements(n)), 1e4));
+    throw new TypeError(`Expected JSON, got ${response.headers.get('Content-Type')}`);
+  }
   const data = await response.json();
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
