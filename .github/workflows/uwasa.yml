@@ -1,0 +1,20 @@
+name: uwasa
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  uwasa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - run: bun uwasa.mjs
+        env:
+          UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
+          UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
+          UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
