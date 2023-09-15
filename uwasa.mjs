@@ -24,7 +24,7 @@ class announcements {
       .then(data => data.filter(({ id }) => id > announcements.id));
   }
   static async init(news = getAnnouncements()) {
-    this.id = Math.max(this.id, ...(await news).map(({id}) => id));
+    this.id = Math.max(this.id, ...(await news).map(({ id }) => id));
   }
 };
 
@@ -43,10 +43,9 @@ const getAnnouncements = async () => {
       'If-None-Match': etag,
     }
   });
-  console.log({response, etag});
   if (response.status === 304) return [{ id }];
   if (!response.ok) throw response;
-  const data = await response.json();
+  const data = await response.json()
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
     if (item.id > id) id = item.id;
@@ -103,7 +102,7 @@ const postMagiRepo = async news => {
     content: message,
     embeds: [{ image: { url: new URL(m.url, UWASA_ORIGIN).href } }]
   });
-}
+};
 
 const postDiscord = async (
   content = null,
@@ -131,9 +130,12 @@ const tick = async () => {
     postAppVersion(news),
     postMagiRepo(news),
   ])
-  .then(() => announcements.id = Math.max(announcements.id, ...news.map(({id}) => id)));
-}
+  .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id)));
+};
 
 const lastId = await tick();
 
-await Bun.write(Bun.stdout, lastId);
+await Bun.write(Bun.stdout, `
+UWASA_LAST=${lastId}
+UWASA_ETAG=${etag}
+`);

@@ -1,9 +1,11 @@
 name: uwasa
 
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '2,9,18,36 * * * *'
+
+permissions:
+  contents: write
 
 jobs:
   uwasa:
@@ -20,13 +22,9 @@ jobs:
           UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
           UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
           UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
-      - name: PR
-        id: pr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.UWASA_TOKEN }}
-          commit-message: update announcements
-          committer: Uwasa <uwasa@cirno.name>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          title: Update announcements
-          body: Doublecheck me
+      - name: Update announcements
+        run: |
+          git config --global user.name 'Uwasa'
+          git config --global user.email 'uwasa@cirno.name'
+          git commit -a -m "update announcements"
+          git push
