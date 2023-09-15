@@ -24,6 +24,7 @@ jobs:
         id: pr
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.UWASA_TOKEN }}
           commit-message: update announcements
           committer: Uwasa <uwasa@cirno.name>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
