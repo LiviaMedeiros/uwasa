@@ -59,10 +59,10 @@ const normalDate = (y, m, d, ...t) => Date.UTC(+y, +m -1, +d, ...t) /1000 -32400
 
 const parseCategory = async (news, cat, re, maxId = announcements.id, result = null) => {
   news
-  .filter(({ category }) => category === cat)
-  .map(({ id, text }) => ({ id, parsed: re.exec(text) }))
-  .filter(({ parsed }) => parsed?.groups)
-  .forEach(({ id, parsed: { groups } }) => id > maxId && ([maxId, result] = [id, groups]));
+    .filter(({ category }) => category === cat)
+    .map(({ id, text }) => ({ id, parsed: re.exec(text) }))
+    .filter(({ parsed }) => parsed?.groups)
+    .forEach(({ id, parsed: { groups } }) => id > maxId && ([maxId, result] = [id, groups]));
   return result;
 };
 
@@ -108,19 +108,19 @@ const postDiscord = async (
   content = null,
   webhook = WEBHOOK_URL,
 ) => content && fetch(
-    webhook, {
-      method: 'POST',
-      headers: {
-        'User-Agent': USER_AGENT,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        ...(typeof content === 'string' ? { content } : content),
-        ...DISCORD_META,
-      }),
-    }
-  ).then(response => response.text());
+  webhook, {
+    method: 'POST',
+    headers: {
+      'User-Agent': USER_AGENT,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      ...typeof content === 'string' ? { content } : content,
+      ...DISCORD_META,
+    }),
+  }
+).then(response => response.text());
 
 const tick = async () => {
   const news = await new announcements;
@@ -130,7 +130,7 @@ const tick = async () => {
     postAppVersion(news),
     postMagiRepo(news),
   ])
-  .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id)));
+    .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id)));
 };
 
 const lastId = await tick();
