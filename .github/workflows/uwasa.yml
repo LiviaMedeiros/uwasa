@@ -27,4 +27,4 @@ jobs:
           git config --global user.name 'Uwasa'
           git config --global user.email 'uwasa@cirno.name'
           git commit -a -m "update announcements"
-          git push
+          git push || true
