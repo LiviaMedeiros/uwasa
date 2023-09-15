@@ -43,7 +43,6 @@ const getAnnouncements = async () => {
       'If-None-Match': etag,
     }
   });
-  console.log({response, etag});
   if (response.status === 304) return [{ id }];
   if (!response.ok) throw response;
   const data = await response.json();
@@ -136,4 +135,7 @@ const tick = async () => {
 
 const lastId = await tick();
 
-await Bun.write(Bun.stdout, lastId);
+await Bun.write(Bun.stdout, `
+uwasa_last=${lastId}
+uwasa_etag=${etag}
+`);

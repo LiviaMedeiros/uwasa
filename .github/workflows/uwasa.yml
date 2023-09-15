@@ -15,7 +15,7 @@ jobs:
           bun-version: latest
       - name: Uwasa
         id: uwasa
-        run: bun uwasa.mjs
+        run: bun uwasa.mjs >> "$GITHUB_ENV"
         env:
           UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
           UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
