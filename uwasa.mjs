@@ -7,6 +7,8 @@ const {
   UWASA_NAME,
   UWASA_ORIGIN,
   UWASA_WEBHOOK,
+  UWASA_LAST,
+  UWASA_ETAG,
 } = Bun.env;
 
 const PATH_TO_ANNOUNCEMENTS_FILE = new URL(UWASA_ANNOUNCEMENTS, UWASA_ORIGIN);
@@ -50,6 +52,8 @@ const last = new URL('last.json', import.meta.url);
 
 let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'json' } });
 
+console.info({ UWASA_LAST, UWASA_ETAG });
+
 Object.assign(announcements, { id });
 
 const getAnnouncements = async () => {
@@ -58,7 +62,7 @@ const getAnnouncements = async () => {
     headers: {
       'User-Agent': USER_AGENT,
       'Accept-Encoding': 'gzip',
-//      'If-None-Match': etag,
+      'If-None-Match': etag,
     }
   });
   if (response.status === 304) return [{ id }];
@@ -69,11 +73,16 @@ const getAnnouncements = async () => {
     if (item.id > id) id = item.id;
     return writeJSON(new URL(`announcements/${item.id}.json`, import.meta.url), item);
   }));
+
+  // TODO: remove this if variable method is stable
   await writeJSON(last, { id, etag });
+
+  // TODO: move this down so it triggers only at full success
   await Promise.all([
     ['LAST', `${id}`],
     ['ETAG', etag],
   ].map(updateVariable));
+
   return data;
 };
 

@@ -28,6 +28,8 @@ jobs:
           UWASA_NAME: ${{ secrets.UWASA_NAME }}
           UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
           UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
+          UWASA_LAST: ${{ vars.LAST }}
+          UWASA_ETAG: ${{ vars.ETAG }}
       - name: Update announcements
         run: |
           git config --global user.name 'Uwasa'
