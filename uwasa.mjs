@@ -158,12 +158,12 @@ const postDiscord = async (
 const tick = async () => {
   const news = await new announcements;
 
-  return news?.length && Promise.all([
+  return news?.length ? Promise.all([
     postMaintenance(news),
     postAppVersion(news),
     postMagiRepo(news),
   ])
-    .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id)));
+    .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id))) : false;
 };
 
 const lastId = await tick();
