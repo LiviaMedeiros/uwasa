@@ -35,7 +35,7 @@ const updateVariable = async ([name, value]) =>
   });
 
 class announcements {
-  static id = 0;
+  static id = UWASA_LAST |0;
   static rMaintenance = /<p[^>]*newsHeadUnder[^>]*>[^<]*■日時[^<]*<\/p>\s*(?<year>[0-9]*)年(?<month>[0-9]*)月(?<day>[0-9]*)日(?<startHour>[0-9]*):(?<startMinute>[0-9]*)～(?<endHour>[0-9]*):(?<endMinute>[0-9]*)\s*<br \/>/;
   static rAppVersion = /バージョン(?<version>[0-9.]*)への強制アップデートは(?<year>[0-9]*)年(?<month>[0-9]*)月(?<day>[0-9]*)日(?<hour>[0-9]*):(?<minute>[0-9]*)に実施いたします。/;
   static rMagiRepo = /「マギア☆レポート[^」]*」第(?<number>[0-9]*)回を掲載いたしました.*(?<url>\/magica\/resource\/image_web\/announce\/[^"]*\.png)/s;
@@ -52,12 +52,10 @@ class announcements {
 //const last = new URL('last.json', import.meta.url);
 //let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'json' } });
 
-let id = UWASA_LAST |0;
+let id = announcements.id;
 let etag = UWASA_ETAG ?? '';
 
 console.info('get', { id, etag });
-
-Object.assign(announcements, { id });
 
 const getAnnouncements = async () => {
   const response = await fetch(PATH_TO_ANNOUNCEMENTS_FILE, {
