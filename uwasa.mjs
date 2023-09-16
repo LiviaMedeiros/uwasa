@@ -19,6 +19,19 @@ const DISCORD_META = Object.freeze({
 
 const writeJSON = async (url, data) => Bun.write(url, JSON.stringify(data, null, 1));
 
+const updateVariable = async ([name, value]) =>
+  fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/variables/${name}`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: JSON.stringify({ value }),
+  }).then(({ ok, status }) => {
+    if (!ok) throw status;
+  });
+
 class announcements {
   static id = 0;
   static rMaintenance = /<p[^>]*newsHeadUnder[^>]*>[^<]*■日時[^<]*<\/p>\s*(?<year>[0-9]*)年(?<month>[0-9]*)月(?<day>[0-9]*)日(?<startHour>[0-9]*):(?<startMinute>[0-9]*)～(?<endHour>[0-9]*):(?<endMinute>[0-9]*)\s*<br \/>/;
@@ -57,6 +70,10 @@ const getAnnouncements = async () => {
     return writeJSON(new URL(`announcements/${item.id}.json`, import.meta.url), item);
   }));
   await writeJSON(last, { id, etag });
+  await Promise.all([
+    ['LAST', `${id}`],
+    ['ETAG', etag],
+  ].map(updateVariable));
   return data;
 };
 
@@ -139,29 +156,6 @@ const tick = async () => {
 };
 
 const lastId = await tick();
-
-if (lastId || true) {
-  console.info(
-  await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/variables/LAST`, {
-    method: 'PATCH',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-    body: JSON.stringify({ value: `${lastId}` }),
-  }),
-  await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/variables/ETAG`, {
-    method: 'PATCH',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-    body: JSON.stringify({ value: etag }),
-  })
-  );
-}
 
 await Bun.write(Bun.stdout, `
 UWASA_LAST=${lastId}
