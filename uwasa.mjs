@@ -1,16 +1,18 @@
 const {
-  UWASA_ORIGIN,
   UWASA_ANNOUNCEMENTS,
+  UWASA_AVATAR,
+  UWASA_NAME,
+  UWASA_ORIGIN,
   UWASA_WEBHOOK,
 } = Bun.env;
 
 const PATH_TO_ANNOUNCEMENTS_FILE = new URL(UWASA_ANNOUNCEMENTS, UWASA_ORIGIN);
 const USER_AGENT = 'UoSM';
 const WEBHOOK_URL = new URL(UWASA_WEBHOOK, 'https://discord.com/api/webhooks/');
-const DISCORD_META = {
-  username: 'Rumor of Server Maintenance',
-  avatar_url: 'https://i.ibb.co/Q9Kx1mY/f15aac5a8972771dda5612263f224d20.jpg',
-};
+const DISCORD_META = Object.freeze({
+  username: UWASA_NAME,
+  avatar_url: UWASA_AVATAR,
+});
 
 const writeJSON = async (url, data) => Bun.write(url, JSON.stringify(data, null, 1));
 
@@ -26,7 +28,7 @@ class announcements {
   static async init(news = getAnnouncements()) {
     this.id = Math.max(this.id, ...(await news).map(({ id }) => id));
   }
-};
+}
 
 const last = new URL('last.json', import.meta.url);
 
