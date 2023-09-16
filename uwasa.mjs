@@ -48,11 +48,14 @@ class announcements {
   }
 }
 
-const last = new URL('last.json', import.meta.url);
+// TODO: remove this if variable method is stable
+//const last = new URL('last.json', import.meta.url);
+//let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'json' } });
 
-let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'json' } });
+let id = UWASA_LAST |0;
+let etag = UWASA_ETAG ?? '';
 
-console.info({ UWASA_LAST, UWASA_ETAG });
+console.info('get', { id, etag });
 
 Object.assign(announcements, { id });
 
@@ -75,9 +78,10 @@ const getAnnouncements = async () => {
   }));
 
   // TODO: remove this if variable method is stable
-  await writeJSON(last, { id, etag });
+  //await writeJSON(last, { id, etag });
 
   // TODO: move this down so it triggers only at full success
+  console.info('set', { id, etag });
   await Promise.all([
     ['LAST', `${id}`],
     ['ETAG', etag],
