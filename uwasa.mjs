@@ -1,4 +1,7 @@
 const {
+  GITHUB_API_URL,
+  GITHUB_REPOSITORY,
+  UWASA_GH_TOKEN,
   UWASA_ANNOUNCEMENTS,
   UWASA_AVATAR,
   UWASA_NAME,
@@ -42,7 +45,7 @@ const getAnnouncements = async () => {
     headers: {
       'User-Agent': USER_AGENT,
       'Accept-Encoding': 'gzip',
-      'If-None-Match': etag,
+//      'If-None-Match': etag,
     }
   });
   if (response.status === 304) return [{ id }];
@@ -136,6 +139,29 @@ const tick = async () => {
 };
 
 const lastId = await tick();
+
+if (lastId || true) {
+  console.info(
+  await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/variables/LAST`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: JSON.stringify({ value: `${lastId}` }),
+  }),
+  await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/variables/ETAG`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: JSON.stringify({ value: etag }),
+  })
+  );
+}
 
 await Bun.write(Bun.stdout, `
 UWASA_LAST=${lastId}
