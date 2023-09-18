@@ -12,8 +12,8 @@ const {
 } = Bun.env;
 
 const ORIGINS = UWASA_ORIGINS.split`|`;
-const [UWASA_ORIGIN] = ORIGINS;
-const PATH_TO_ANNOUNCEMENTS_FILE = new URL(UWASA_ANNOUNCEMENTS, UWASA_ORIGIN);
+const [ORIGIN] = ORIGINS;
+const PATHS = ORIGINS.map($ => new URL(UWASA_ANNOUNCEMENTS, $));
 const USER_AGENT = 'UoSM';
 const WEBHOOK_URL = new URL(UWASA_WEBHOOK, 'https://discord.com/api/webhooks/');
 const DISCORD_META = Object.freeze({
@@ -59,17 +59,25 @@ let etag = UWASA_ETAG ?? '';
 
 console.info('get', { id, etag });
 
+const getResponse = async () => {
+  return Promise.any(PATHS.map(async $ => {
+    const response = await fetch($, {
+      method: 'GET',
+      headers: {
+        'User-Agent': USER_AGENT,
+        'Accept-Encoding': 'gzip',
+        'If-None-Match': etag,
+      }
+    });
+    if (response.status === 304) return [{ id }];
+    if (!response.ok) throw response;
+    if (!response.headers.get('Content-Type')?.startsWith('application/json')) throw response;
+    return response;
+  }));
+};
+
 const getAnnouncements = async () => {
-  const response = await fetch(PATH_TO_ANNOUNCEMENTS_FILE, {
-    method: 'GET',
-    headers: {
-      'User-Agent': USER_AGENT,
-      'Accept-Encoding': 'gzip',
-      'If-None-Match': etag,
-    }
-  });
-  if (response.status === 304) return [{ id }];
-  if (!(response.ok && response.headers.get('Content-Type')?.startsWith('application/json'))) throw response;
+  const response = await getResponse();
   const data = await response.json();
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
@@ -151,7 +159,7 @@ const postMagiRepo = async news => {
 
   return postDiscord({
     content: message,
-    embeds: [{ image: { url: new URL(m.url, UWASA_ORIGIN).href } }],
+    embeds: [{ image: { url: new URL(m.url, ORIGIN).href } }],
   });
 };
 
