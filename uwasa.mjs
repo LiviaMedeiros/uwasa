@@ -60,7 +60,6 @@ console.info('get', { id, etag });
 const getResponse = async () => {
   return Promise.any(PATHS.map(async $ => {
     const response = await fetch($, {
-      method: 'GET',
       headers: {
         'User-Agent': USER_AGENT,
         'Accept-Encoding': 'gzip',
@@ -127,7 +126,7 @@ const postDiscord = async (
       ...DISCORD_META,
     }),
   }
-).then(response => response.text());
+);
 
 const postMaintenance = async news => {
   const m = await parseCategory(news, 'MNT', new RegExp(UWASA_RE_MAINTENANCE));
