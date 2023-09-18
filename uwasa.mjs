@@ -39,9 +39,9 @@ const updateVariable = async ([name, value]) =>
 
 class announcements {
   static id = UWASA_LAST |0;
-  static rMaintenance = /<p[^>]*newsHeadUnder[^>]*>[^<]*■日時[^<]*<\/p>\s*(?<year>[0-9]*)年(?<month>[0-9]*)月(?<day>[0-9]*)日(?<startHour>[0-9]*):(?<startMinute>[0-9]*)～(?<endHour>[0-9]*):(?<endMinute>[0-9]*)\s*<br \/>/;
-  static rAppVersion = /バージョン(?<version>[0-9.]*)への強制アップデートは(?<year>[0-9]*)年(?<month>[0-9]*)月(?<day>[0-9]*)日(?<hour>[0-9]*):(?<minute>[0-9]*)に実施いたします。/;
-  static rMagiRepo = /「マギア☆レポート[^」]*」第(?<number>[0-9]*)回を掲載いたしました.*(?<url>\/magica\/resource\/image_web\/announce\/[^"]*\.png)/s;
+  static rMaintenance = /<p[^>]*newsHeadUnder[^>]*>[^<]*■日時[^<]*<\/p>[^\d]*(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日(?<startHour>\d+):(?<startMinute>\d+)～(?<endHour>\d+):(?<endMinute>\d+)[^\d]/;
+  static rAppVersion = /バージョン(?<version>.+)への強制アップデートは(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日(?<hour>\d+):(?<minute>\d+)に実施いたします。/;
+  static rMagiRepo = /「マギア☆レポート[^」]*」第(?<issue>\d+)回を掲載いたしました.*(?<url>\/magica\/resource\/image_web\/announce\/[^"]*\.png)/s;
   constructor() {
     return getAnnouncements()
       .then(data => data.filter(({ id }) => id > announcements.id));
@@ -70,7 +70,8 @@ const getResponse = async () => {
         'If-None-Match': etag,
       }
     });
-    if (response.status === 304) return NOT_MODIFIED;
+    if (response.status === 304)
+      return NOT_MODIFIED;
     if (!response.ok)
       throw new Error('Bad response', { cause: response.status });
     if (!response.headers.get('Content-Type')?.startsWith('application/json'))
@@ -83,6 +84,7 @@ const getAnnouncements = async () => {
   const response = await getResponse();
   if (response === NOT_MODIFIED)
     return console.info('skip'), [{ id }];
+
   const data = await response.json();
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
@@ -160,7 +162,7 @@ const postMagiRepo = async news => {
   if (!m)
     return false;
 
-  const message = `Magia Report Issue \`#${m.number}\` is available!`;
+  const message = `Magia Report Issue \`#${m.issue}\` is available!`;
 
   return postDiscord({
     content: message,
