@@ -80,24 +80,40 @@ const getAnnouncements = async () => {
 
   // TODO: move this down so it triggers only at full success
   console.info('set', { id, etag });
-  await Promise.all([
-    ['LAST', `${id}`],
-    ['ETAG', etag],
-  ].map(updateVariable));
+  await Promise.all(Object.entries({
+    LAST: `${id}`,
+    ETAG: etag,
+  }).map(updateVariable));
 
   return data;
 };
 
 const normalDate = (y, m, d, ...t) => Date.UTC(+y, +m -1, +d, ...t) /1000 -32400;
 
-const parseCategory = async (news, cat, re, maxId = announcements.id, result = null) => {
+const parseCategory = async (news, cat, re, maxId = announcements.id) =>
   news
     .filter(({ category }) => category === cat)
     .map(({ id, text }) => ({ id, parsed: re.exec(text) }))
     .filter(({ parsed }) => parsed?.groups)
-    .forEach(({ id, parsed: { groups } }) => id > maxId && ([maxId, result] = [id, groups]));
-  return result;
-};
+    .reduce(($, { id, parsed: { groups } }) => id > maxId ? (maxId = id, groups) : $, null);
+
+const postDiscord = async (
+  content = null,
+  webhook = WEBHOOK_URL,
+) => content && fetch(
+  webhook, {
+    method: 'POST',
+    headers: {
+      'User-Agent': USER_AGENT,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      ...typeof content === 'string' ? { content } : content,
+      ...DISCORD_META,
+    }),
+  }
+).then(response => response.text());
 
 const postMaintenance = async news => {
   const m = await parseCategory(news, 'MNT', announcements.rMaintenance);
@@ -133,27 +149,9 @@ const postMagiRepo = async news => {
 
   return postDiscord({
     content: message,
-    embeds: [{ image: { url: new URL(m.url, UWASA_ORIGIN).href } }]
+    embeds: [{ image: { url: new URL(m.url, UWASA_ORIGIN).href } }],
   });
 };
-
-const postDiscord = async (
-  content = null,
-  webhook = WEBHOOK_URL,
-) => content && fetch(
-  webhook, {
-    method: 'POST',
-    headers: {
-      'User-Agent': USER_AGENT,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-    body: JSON.stringify({
-      ...typeof content === 'string' ? { content } : content,
-      ...DISCORD_META,
-    }),
-  }
-).then(response => response.text());
 
 const tick = async () => {
   const news = await new announcements;
