@@ -64,7 +64,8 @@ const getResponse = async () => {
         'User-Agent': USER_AGENT,
         'Accept-Encoding': 'gzip',
         'If-None-Match': etag,
-      }
+      },
+      signal: AbortSignal.timeout(9999),
     });
     if (response.status === 304)
       return NOT_MODIFIED;
