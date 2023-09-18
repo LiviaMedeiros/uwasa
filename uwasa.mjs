@@ -44,7 +44,7 @@ class announcements {
   static id = UWASA_LAST |0;
   constructor() {
     return getAnnouncements()
-      .then(data => data.filter(({ id }) => id > announcements.id));
+      .then(data => data.filter(({ id }) => id > this.constructor.id));
   }
 }
 
@@ -71,8 +71,13 @@ const getResponse = async () => {
       return NOT_MODIFIED;
     if (!response.ok)
       throw new Error('Bad response', { cause: response.status });
-    if (!response.headers.get('Content-Type')?.startsWith('application/json'))
-      throw new Error('Very bad response');
+    if (!response.headers.get('Content-Type')?.startsWith('application/json')) {
+      // Assume:
+      // Last-Modified: Mon, 26 Nov 2018 06:45:05 GMT
+      // Content-Type: text/html
+      // Content-Length: 6351 # not included but whatever
+      throw Error;
+    }
     return response;
   }));
 };
