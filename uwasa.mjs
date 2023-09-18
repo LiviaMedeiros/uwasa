@@ -42,15 +42,9 @@ const updateVariable = async ([name, value]) =>
 
 class announcements {
   static id = UWASA_LAST |0;
-  static rMaintenance = new RegExp(UWASA_RE_MAINTENANCE);
-  static rAppVersion = new RegExp(UWASA_RE_APPVERSION);
-  static rMagiRepo = new RegExp(UWASA_RE_MAGIREPO, 's');
   constructor() {
     return getAnnouncements()
       .then(data => data.filter(({ id }) => id > announcements.id));
-  }
-  static async init(news = getAnnouncements()) {
-    this.id = Math.max(this.id, ...(await news).map(({ id }) => id));
   }
 }
 
@@ -136,7 +130,7 @@ const postDiscord = async (
 ).then(response => response.text());
 
 const postMaintenance = async news => {
-  const m = await parseCategory(news, 'MNT', announcements.rMaintenance);
+  const m = await parseCategory(news, 'MNT', new RegExp(UWASA_RE_MAINTENANCE));
   if (!m)
     return false;
 
@@ -149,7 +143,7 @@ const postMaintenance = async news => {
 };
 
 const postAppVersion = async news => {
-  const m = await parseCategory(news, 'UPD', announcements.rAppVersion);
+  const m = await parseCategory(news, 'UPD', new RegExp(UWASA_RE_APPVERSION));
   if (!m)
     return false;
 
@@ -161,7 +155,7 @@ const postAppVersion = async news => {
 };
 
 const postMagiRepo = async news => {
-  const m = await parseCategory(news, 'NEW', announcements.rMagiRepo);
+  const m = await parseCategory(news, 'NEW', new RegExp(UWASA_RE_MAGIREPO, 's'));
   if (!m)
     return false;
 
