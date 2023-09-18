@@ -20,6 +20,7 @@ const DISCORD_META = Object.freeze({
   username: UWASA_NAME,
   avatar_url: UWASA_AVATAR,
 });
+const NOT_MODIFIED = Symbol('NOT_MODIFIED');
 
 const writeJSON = async (url, data) => Bun.write(url, JSON.stringify(data, null, 1));
 
@@ -69,15 +70,19 @@ const getResponse = async () => {
         'If-None-Match': etag,
       }
     });
-    if (response.status === 304) return [{ id }];
-    if (!response.ok) throw response;
-    if (!response.headers.get('Content-Type')?.startsWith('application/json')) throw response;
+    if (response.status === 304) return NOT_MODIFIED;
+    if (!response.ok)
+      throw new Error('Bad response', { cause: response.status });
+    if (!response.headers.get('Content-Type')?.startsWith('application/json'))
+      throw new Error('Very bad response');
     return response;
   }));
 };
 
 const getAnnouncements = async () => {
   const response = await getResponse();
+  if (response === NOT_MODIFIED)
+    return console.info('skip'), [{ id }];
   const data = await response.json();
   etag = response.headers.get('ETag');
   await Promise.all(data.map(item => {
