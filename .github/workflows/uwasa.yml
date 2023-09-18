@@ -26,7 +26,7 @@ jobs:
           UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
           UWASA_AVATAR: ${{ secrets.UWASA_AVATAR }}
           UWASA_NAME: ${{ secrets.UWASA_NAME }}
-          UWASA_ORIGIN: ${{ secrets.UWASA_ORIGIN }}
+          UWASA_ORIGINS: ${{ secrets.UWASA_ORIGINS }}
           UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
           UWASA_LAST: ${{ vars.LAST }}
           UWASA_ETAG: ${{ vars.ETAG }}
