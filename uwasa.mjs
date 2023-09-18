@@ -7,6 +7,9 @@ const {
   UWASA_NAME,
   UWASA_ORIGINS,
   UWASA_WEBHOOK,
+  UWASA_RE_MAINTENANCE,
+  UWASA_RE_APPVERSION,
+  UWASA_RE_MAGIREPO,
   UWASA_LAST,
   UWASA_ETAG,
 } = Bun.env;
@@ -39,9 +42,9 @@ const updateVariable = async ([name, value]) =>
 
 class announcements {
   static id = UWASA_LAST |0;
-  static rMaintenance = /<p[^>]*newsHeadUnder[^>]*>[^<]*■日時[^<]*<\/p>[^\d]*(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日(?<startHour>\d+):(?<startMinute>\d+)～(?<endHour>\d+):(?<endMinute>\d+)[^\d]/;
-  static rAppVersion = /バージョン(?<version>.+)への強制アップデートは(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日(?<hour>\d+):(?<minute>\d+)に実施いたします。/;
-  static rMagiRepo = /「マギア☆レポート[^」]*」第(?<issue>\d+)回を掲載いたしました.*(?<url>\/magica\/resource\/image_web\/announce\/[^"]*\.png)/s;
+  static rMaintenance = new RegExp(UWASA_RE_MAINTENANCE);
+  static rAppVersion = new RegExp(UWASA_RE_APPVERSION);
+  static rMagiRepo = new RegExp(UWASA_RE_MAGIREPO, 's');
   constructor() {
     return getAnnouncements()
       .then(data => data.filter(({ id }) => id > announcements.id));

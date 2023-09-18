@@ -28,6 +28,9 @@ jobs:
           UWASA_NAME: ${{ secrets.UWASA_NAME }}
           UWASA_ORIGINS: ${{ secrets.UWASA_ORIGINS }}
           UWASA_WEBHOOK: ${{ secrets.UWASA_WEBHOOK }}
+          UWASA_RE_MAINTENANCE: ${{ secrets.UWASA_RE_MAINTENANCE }}
+          UWASA_RE_APPVERSION: ${{ secrets.UWASA_RE_APPVERSION }}
+          UWASA_RE_MAGIREPO: ${{ secrets.UWASA_RE_MAGIREPO }}
           UWASA_LAST: ${{ vars.LAST }}
           UWASA_ETAG: ${{ vars.ETAG }}
       - name: Update announcements
