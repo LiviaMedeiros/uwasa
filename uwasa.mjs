@@ -46,14 +46,8 @@ class announcements {
   }
 }
 
-// TODO: remove this if variable method is stable
-//const last = new URL('last.json', import.meta.url);
-//let { default: { id = 0, etag = '' } } = await import(last, { assert: { type: 'json' } });
-
 let id = announcements.id;
 let etag = UWASA_ETAG ?? '';
-
-console.info('get', { id, etag });
 
 const getResponse = async () => {
   return Promise.any(ORIGINS.map(async $ => {
@@ -92,11 +86,7 @@ const getAnnouncements = async () => {
     return writeJSON(new URL(`announcements/${item.id}.json`, import.meta.url), item);
   }));
 
-  // TODO: remove this if variable method is stable
-  //await writeJSON(last, { id, etag });
-
-  // TODO: move this down so it triggers only at full success
-  console.info('set', { id, etag });
+  // If this fails, abort to prevent duplicates
   await Promise.all(Object.entries({
     LAST: `${id}`,
     ETAG: etag,
@@ -172,17 +162,13 @@ const postMagiRepo = async news => {
 const tick = async () => {
   const news = await new announcements;
 
-  return news?.length ? Promise.all([
-    postMaintenance(news),
-    postAppVersion(news),
-    postMagiRepo(news),
-  ])
-    .then(() => announcements.id = Math.max(announcements.id, ...news.map(({ id }) => id))) : false;
+  return news?.length
+    ? Promise.all([
+      postMaintenance(news),
+      postAppVersion(news),
+      postMagiRepo(news),
+    ])
+    : false;
 };
 
-const lastId = await tick();
-
-await Bun.write(Bun.stdout, `
-UWASA_LAST=${lastId}
-UWASA_ETAG=${etag}
-`);
+await tick();
