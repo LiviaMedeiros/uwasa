@@ -14,11 +14,9 @@ const {
   UWASA_ETAG,
 } = Bun.env;
 
-const ORIGINS = UWASA_ORIGINS.split`|`;
+const ORIGINS = UWASA_ORIGINS.split('|');
 const [ORIGIN] = ORIGINS;
-const PATHS = ORIGINS.map($ => new URL(UWASA_ANNOUNCEMENTS, $));
 const USER_AGENT = 'UoSM';
-const WEBHOOK_URL = new URL(UWASA_WEBHOOK, 'https://discord.com/api/webhooks/');
 const DISCORD_META = Object.freeze({
   username: UWASA_NAME,
   avatar_url: UWASA_AVATAR,
@@ -58,8 +56,8 @@ let etag = UWASA_ETAG ?? '';
 console.info('get', { id, etag });
 
 const getResponse = async () => {
-  return Promise.any(PATHS.map(async $ => {
-    const response = await fetch($, {
+  return Promise.any(ORIGINS.map(async $ => {
+    const response = await fetch(new URL(UWASA_ANNOUNCEMENTS, $), {
       headers: {
         'User-Agent': USER_AGENT,
         'Accept-Encoding': 'gzip',
@@ -118,9 +116,9 @@ const parseCategory = async (news, cat, re, maxId = announcements.id) =>
 
 const postDiscord = async (
   content = null,
-  webhook = WEBHOOK_URL,
-) => content && fetch(
-  webhook, {
+  webhook = UWASA_WEBHOOK,
+) =>
+  content && fetch(new URL(webhook, 'https://discord.com/api/webhooks/'), {
     method: 'POST',
     headers: {
       'User-Agent': USER_AGENT,
@@ -131,8 +129,7 @@ const postDiscord = async (
       ...typeof content === 'string' ? { content } : content,
       ...DISCORD_META,
     }),
-  }
-);
+  });
 
 const postMaintenance = async news => {
   const m = await parseCategory(news, 'MNT', new RegExp(UWASA_RE_MAINTENANCE));
