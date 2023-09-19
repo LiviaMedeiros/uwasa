@@ -1,9 +1,6 @@
 name: uwasa
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron: '2/9 * * * *'
 
