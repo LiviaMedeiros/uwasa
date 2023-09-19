@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '2,9,18,36,54 * * * *'
+    - cron: '2/9 * * * *'
 
 permissions:
   contents: write
