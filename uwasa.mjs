@@ -46,16 +46,13 @@ class announcements {
   }
 }
 
-let id = announcements.id;
-let etag = UWASA_ETAG ?? '';
-
 const getResponse = async () => {
   return Promise.any(ORIGINS.map(async $ => {
     const response = await fetch(new URL(UWASA_ANNOUNCEMENTS, $), {
       headers: {
         'User-Agent': USER_AGENT,
         'Accept-Encoding': 'gzip',
-        'If-None-Match': etag,
+        'If-None-Match': UWASA_ETAG ?? '',
       },
       signal: AbortSignal.timeout(9999),
     });
@@ -74,22 +71,21 @@ const getResponse = async () => {
   }));
 };
 
-const getAnnouncements = async () => {
+const getAnnouncements = async ({ id } = announcements) => {
   const response = await getResponse();
   if (response === NOT_MODIFIED)
     return console.info('skip'), [{ id }];
 
   const data = await response.json();
-  etag = response.headers.get('ETag');
-  await Promise.all(data.map(item => {
-    if (item.id > id) id = item.id;
-    return writeJSON(new URL(`announcements/${item.id}.json`, import.meta.url), item);
+  await Promise.all(data.map($ => {
+    if ($.id > id) id = $.id;
+    return writeJSON(new URL(`announcements/${$.id}.json`, import.meta.url), $);
   }));
 
   // If this fails, abort to prevent duplicates
   await Promise.all(Object.entries({
     LAST: `${id}`,
-    ETAG: etag,
+    ETAG: `${response.headers.get('ETag')}`,
   }).map(updateVariable));
 
   return data;
@@ -122,12 +118,12 @@ const postDiscord = async (
   });
 
 const postMaintenance = async news => {
-  const m = await parseCategory(news, 'MNT', new RegExp(UWASA_RE_MAINTENANCE));
-  if (!m)
+  const _ = await parseCategory(news, 'MNT', new RegExp(UWASA_RE_MAINTENANCE));
+  if (!_)
     return false;
 
-  const startDate = normalDate(m.year, m.month, m.day, m.startHour, m.startMinute);
-  const endDate = normalDate(m.year, m.month, m.day, m.endHour, m.endMinute);
+  const startDate = normalDate(_.year, _.month, _.day, _.startHour, _.startMinute);
+  const endDate = normalDate(_.year, _.month, _.day, _.endHour, _.endMinute);
 
   const message = `Maintenance scheduled to start at <t:${startDate}:f> (<t:${startDate}:R>) and end at <t:${endDate}:t> (<t:${endDate}:R>).`;
 
@@ -135,40 +131,40 @@ const postMaintenance = async news => {
 };
 
 const postAppVersion = async news => {
-  const m = await parseCategory(news, 'UPD', new RegExp(UWASA_RE_APPVERSION));
-  if (!m)
+  const _ = await parseCategory(news, 'UPD', new RegExp(UWASA_RE_APPVERSION));
+  if (!_)
     return false;
 
-  const mandatoryDate = normalDate(m.year, m.month, m.day, m.hour, m.minute);
+  const mandatoryDate = normalDate(_.year, _.month, _.day, _.hour, _.minute);
 
-  const message = `New app version available: \`${m.version}\`. It becomes mandatory on <t:${mandatoryDate}:f> (<t:${mandatoryDate}:R>).`;
+  const message = `New app version available: \`${_.version}\`. It becomes mandatory on <t:${mandatoryDate}:f> (<t:${mandatoryDate}:R>).`;
 
   return postDiscord(message);
 };
 
 const postMagiRepo = async news => {
-  const m = await parseCategory(news, 'NEW', new RegExp(UWASA_RE_MAGIREPO, 's'));
-  if (!m)
+  const _ = await parseCategory(news, 'NEW', new RegExp(UWASA_RE_MAGIREPO, 's'));
+  if (!_)
     return false;
 
-  const message = `Magia Report Issue \`#${m.issue}\` is available!`;
+  const message = `Magia Report Issue \`#${_.issue}\` is available!`;
 
   return postDiscord({
     content: message,
-    embeds: [{ image: { url: new URL(m.url, ORIGIN).href } }],
+    embeds: [{ image: { url: new URL(_.url, ORIGIN).href } }],
   });
 };
 
-const tick = async () => {
+const uwasa = async () => {
   const news = await new announcements;
 
   return news?.length
     ? Promise.all([
-      postMaintenance(news),
-      postAppVersion(news),
-      postMagiRepo(news),
-    ])
+      postMaintenance,
+      postAppVersion,
+      postMagiRepo,
+    ].map($ => $(news)))
     : false;
 };
 
-await tick();
+await uwasa();
