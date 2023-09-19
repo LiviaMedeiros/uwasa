@@ -14,12 +14,13 @@ jobs:
   uwasa:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Bun
+        uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Uwasa
-        id: uwasa
         run: bun uwasa.mjs
         env:
           UWASA_GH_TOKEN: ${{ secrets.UWASA_GH_TOKEN }}
@@ -33,8 +34,11 @@ jobs:
           UWASA_RE_MAGIREPO: ${{ secrets.UWASA_RE_MAGIREPO }}
           UWASA_LAST: ${{ vars.LAST }}
           UWASA_ETAG: ${{ vars.ETAG }}
-      - name: Update announcements
-        run: |
-          git config --global user.name 'Uwasa'
-          git config --global user.email 'uwasa@cirno.name'
-          git commit -a -m "update announcements" && git push || true
+      - name: Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.UWASA_GH_TOKEN }}
+          commit-message: update announcements
+          committer: Uwasa <uwasa@cirno.name>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: Update announcements
