@@ -42,6 +42,7 @@ jobs:
           commit-message: update announcements
           committer: Uwasa <uwasa@cirno.name>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          assignees: LiviaMedeiros
           branch: announcements-${{ github.run_id }}
           title: Update announcements
           body: This should only have changes in announcements.
