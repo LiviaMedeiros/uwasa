@@ -1,11 +1,16 @@
 name: uwasa
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '2/9 * * * *'
 
 permissions:
+  actions: write
   contents: write
+  pull-requests: write
 
 jobs:
   uwasa:
@@ -34,7 +39,6 @@ jobs:
       - name: Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.UWASA_GH_TOKEN }}
           commit-message: update announcements
           committer: Uwasa <uwasa@cirno.name>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
