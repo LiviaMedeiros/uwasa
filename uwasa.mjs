@@ -1,7 +1,6 @@
 const {
   GITHUB_API_URL,
   GITHUB_REPOSITORY,
-  GITHUB_TOKEN,
   UWASA_GH_TOKEN,
   UWASA_ANNOUNCEMENTS,
   UWASA_AVATAR,
@@ -31,7 +30,7 @@ const updateVariable = async ([name, value]) =>
     method: 'PATCH',
     headers: {
       'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      'Authorization': `Bearer ${UWASA_GH_TOKEN}`,
       'X-GitHub-Api-Version': '2022-11-28',
     },
     body: JSON.stringify({ value }),

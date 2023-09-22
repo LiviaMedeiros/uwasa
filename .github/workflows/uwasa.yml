@@ -25,7 +25,7 @@ jobs:
       - name: Uwasa
         run: bun uwasa.mjs
         env:
-          UWASA_GH_TOKEN: ${{ secrets.UWASA_GH_TOKEN }}
+          UWASA_GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           UWASA_ANNOUNCEMENTS: ${{ secrets.UWASA_ANNOUNCEMENTS }}
           UWASA_AVATAR: ${{ secrets.UWASA_AVATAR }}
           UWASA_NAME: ${{ secrets.UWASA_NAME }}
