@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   uwasa:
@@ -14,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
@@ -32,13 +33,10 @@ jobs:
           UWASA_RE_MAGIREPO: ${{ secrets.UWASA_RE_MAGIREPO }}
           UWASA_LAST: ${{ vars.LAST }}
           UWASA_ETAG: ${{ vars.ETAG }}
-      - name: Pull Request
-        uses: peter-evans/create-pull-request@v5
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit-message: update announcements
-          committer: Uwasa <uwasa@cirno.name>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          assignees: LiviaMedeiros
-          branch: announcements-${{ github.run_id }}
-          title: Update announcements
-          body: This should only have changes in announcements.
+          commit_message: update announcements
+          file_pattern: 'announcements/*.json'
+          commit_user_name: Uwasa
+          commit_user_email: uwasa@cirno.name
