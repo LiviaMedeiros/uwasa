@@ -1,0 +1,13 @@
+{
+ "id": 2126,
+ "displayOs": "ALL",
+ "category": "UPD",
+ "subject": "【アップデート】<br />新機能「クエストAUTO周回」",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n新機能「クエストAUTO周回」を公開いたしました。<br />\r\n<br />\r\n<p class=\"newsHead\">クエストAUTO周回</p>\r\n「クエストAUTO周回」は任意のクエストを自動で周回する機能です。<br />\r\nプレイに必要なAPがなくなるまで周回が継続します。<br />\r\n<br />\r\n<span class=\"c_red\">\r\n※AUTO周回中に、プレイヤーランクの上昇などによってAPが回復した場合でも<br />\r\n　周回は継続いたします。<br />\r\n</span>\r\n<br />\r\n「クエストAUTO周回」機能は以下の条件をすべて満たしていることで使用可能となります。<br />\r\n<br />\r\n<span class=\"c_purple\">\r\n・該当クエストのクエストミッションをすべてクリアしている<br />\r\n・サポートキャラを選択できる<br />\r\n・再戦ボタンが使用可能なクエストである<br />\r\n</span>\r\n<br />\r\n<span class=\"c_red\">\r\n※アイテムを消費して挑戦するクエストでも使用可能です。<br />\r\n</span>\r\n<br />\r\n<p class=\"newsHeadUnder\">■「クエストAUTO周回」機能の使用方法について</p>\r\nクエストとサポートキャラを選択後のチーム編成画面にて<br />\r\n<span class=\"c_red\">AUTO周回ボタン</span>を押すことで、AUTO周回が始まります。<br />\r\nバトル中に画面を長押しすることでAUTO周回を終了します。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■サポートキャラについて</p>\r\nAUTO周回中のサポートキャラはクエスト開始時に選択した魔法少女が<br />\r\nAUTO周回終了時まで選択され、編成されます。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■サポートキャラについて</p>\r\nサポートPtは通常と同様、クエストクリア回数に応じて<br />\r\nサポートキャラを使用したプレイヤーとサポートキャラを使用されたプレイヤー<br />\r\nのそれぞれが獲得できます。<br />\r\n<br />\r\n<span class=\"c_red\">\r\n※1日に獲得できるサポートPtの上限は3,000Ptまでです。<br />\r\n</span>\r\n<br />\r\n<p class=\"newsHead\">注意事項</p>\r\n・「クエストAUTO周回」の仕様については予告なく変更する場合があります。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2020-11-09 17:00:00",
+ "endAt": "2030-11-09 23:59:59",
+ "sortKey": 21260
+}

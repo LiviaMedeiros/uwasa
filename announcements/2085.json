@@ -1,0 +1,13 @@
+{
+ "id": 2085,
+ "displayOs": "ALL",
+ "category": "UPD",
+ "subject": "【アップデート告知】<br />Chargeディスクの上方修正",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n2020年10月末にバージョン2.2.0のアップデートを予定しております。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■ Chargeディスクでのダメージの上方修正</p>\r\n<p class=\"newsHeadSmall\">・Puella Combo発動時以外</p>\r\nChargeディスクのダメージが、他のディスクでのダメージよりも低い設定でしたが<br />\r\nAcceleディスクのダメージと同等になるように上方修正いたします。<br />\r\n<br />\r\n<p class=\"newsHeadSmall\">・Puella Combo発動時</p>\r\nChargeディスクのダメージに変更はありません。<br />\r\n<br />\r\n<span class=\"c_red\">※今回のアップデートでCharge後のダメージは変更されません。</span><br />\r\n<br />\r\nアップデートの詳細は後日掲載のお知らせをご参照ください。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2020-10-19 18:00:00",
+ "endAt": "2030-10-19 23:59:59",
+ "sortKey": 20850
+}

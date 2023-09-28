@@ -1,0 +1,13 @@
+{
+ "id": 2027,
+ "displayOs": "ALL",
+ "category": "UPD",
+ "subject": "【不具合修正】9月7日19:45時点",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n以下の不具合修正を行いました。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■不具合修正</p>\r\n<span class=\"c_purple\">イベント</span><br />\r\n・『Another Daze ～魔法少女かずみ☆マギカ～』開始時のムービーにて<br />\r\n　「御崎海香」の英字表記に誤りがあった不具合<br />\r\n<br />\r\n<span class=\"c_purple\">メモリア</span><br />\r\n・「三人で、前へ」と「その味はドラマティック!?」の<br />\r\n　「かずみメダル」追加獲得数の表示が実際とは異なっていた不具合<br />\r\n<br />\r\n<span class=\"c_red\">※修正が反映されない場合は、アプリ再起動をお試しください。</span><br />\r\n<br />\r\n<!-- table style -->\r\n<style type=\"text/css\">\r\n\t/* テーブル全体の大きさ */\r\n\ttable.announceTable{\r\n\t\twidth:500px; /* 横幅 */\r\n\t\tborder:1px solid #a47122;\r\n\t\tborder-top:none;\r\n\t\tmargin:10px auto;/* 中央ぞろえ */\r\n\t}\r\n\ttable.announceTable th,table.announceTable td{\r\n\t\tborder-top:1px solid #a47122;\r\n\t\tpadding:10px;\r\n\t\tfont-size:16px;\r\n\t}\r\n\ttable.announceTable td{\r\n\t\tborder-left:1px solid #a47122;\r\n\t}\r\n\t.tableLabel{\r\n\t\tbackground-color:#ff76b0;\r\n\t\tcolor:#fff;\r\n\t\ttext-shadow: -1px -1px 1px #ff5e7c,1px -1px 1px #ff5e7c,-1px 1px 1px #ff5e7c,1px 1px 1px #ff5e7c,-1px -1px #ff5e7c,1px -1px #ff5e7c,-1px 1px #ff5e7c,1px 1px #ff5e7c,-1px -1px 2px #ff5e7c,1px -1px 2px #ff5e7c,-1px 1px 2px #ff5e7c,1px 1px 2px #ff5e7c,-1px -1px 2px #ff5e7c,1px -1px 2px #ff5e7c,-1px 1px 2px #ff5e7c,1px 1px 2px #ff5e7c,-1px -1px 3px #ff5e7c,1px -1px 3px #ff5e7c,-1px 1px 3px #ff5e7c,1px 1px 3px #ff5e7c;\r\n\t}\r\n\tth.names{\r\n\t\tbackground-color: #efe7dd;\r\n\t\tcolor:#a47122;\r\n\t}\r\n\r\n</style>\r\n<!-- table style -->\r\n<!-- table -->\r\n<table class=\"announceTable\">\r\n\t<!-- first row -->\r\n\t<!-- tdの幅はボーダー1px分ひいた数値。thとの合計(ボーダー含む分)をテーブルの横幅と同じに -->\r\n\t<tr>\r\n\t\t<td class=\"tableLabel\"></td>\r\n\t\t<td class=\"tableLabel\">修正前</td>\r\n\t\t<td class=\"tableLabel\">修正後</td>\r\n\t</tr>\r\n\t<!-- first row -->\r\n\r\n\t<!-- 1マス目の背景色など不要な場合はthではなくtdにしてclassを取る -->\r\n\t<tr>\r\n\t\t<th>三人で、前へ<br />(限界突破後)</th>\r\n\t\t<td>追加獲得数+5</td>\r\n\t\t<td>追加獲得数+7</td>\r\n\t</tr>\r\n\t<tr>\r\n\t\t<th>その味はドラマティック!?<br />(限界突破前)</th>\r\n\t\t<td>追加獲得数+1</td>\r\n\t\t<td>追加獲得数+2</td>\r\n\t</tr>\r\n\t<tr>\r\n\t\t<th>その味はドラマティック!?<br />(限界突破後)</th>\r\n\t\t<td>追加獲得数+3</td>\r\n\t\t<td>追加獲得数+5</td>\r\n\t</tr>\r\n</table>\r\n<!-- table -->\r\n<br />\r\n\r\nお客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2020-09-07 19:45:00",
+ "endAt": "2030-09-07 23:59:59",
+ "sortKey": 20270
+}

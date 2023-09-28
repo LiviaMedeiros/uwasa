@@ -1,0 +1,13 @@
+{
+ "id": 2208,
+ "displayOs": "ALL",
+ "category": "UPD",
+ "subject": "現在、確認している不具合について<br />【19:00追記】",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n<!-- <div class=\"commonFrame3\" style=\"padding-top:33px;\">\r\n    <h2>12月21日XX:XX追記</h2>\r\n　以下の不具合を修正いたしました。<br />\r\n　お客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n<br />\r\n　<span class=\"c_red\">※修正が反映されない場合は、アプリ再起動をお試しください。</span><br />\r\n</div>\r\n<br /> -->\r\n<div class=\"commonFrame3\" style=\"padding-top:33px;\">\r\n    <h2>12月22日19:00追記</h2>\r\n　現在発生している不具合について追記いたしました。<br />\r\n　詳細は下記内容をご参照ください。<br />\r\n　お客様にはご迷惑をおかけしますことをお詫び申し上げます。<br />\r\n</div>\r\n<br />\r\n現在、以下の不具合を確認しております。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■内容</p>\r\n<p class=\"newsHeadSmall\">・キモチ戦</p>\r\nリザルト画面での合計ダメージの詳細より確認できるターン情報において<br />\r\n「小さなキュゥべえ」のBlastディスクが表示されない不具合<br />\r\n<br />\r\n<p class=\"newsHeadSmall\">・魔法少女</p>\r\n「柊ねむ」の潜在スキル「ミラージュ・チャーム[Ⅸ]」において<br />\r\nスキルの説明文と実際の効果で、対象が異なる不具合<br />\r\n　　（スキルの説明文）必ず幻惑&確率で魅了[Ⅸ](敵単/1T)<br />\r\n　　　　（実際の効果）必ず幻惑(敵単/1T)&確率で魅了[Ⅸ](敵全/1T)<br />\r\n　<span class=\"c_red\">※スキルの説明文での効果が本来正しく、実際の効果が不具合となります。</span><br />\r\n<br />\r\nまた、上記の不具合のお詫びとして以下の対応をいたします。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対象のお客様</p>\r\n2020年9月19日15:00以降に1度でもログインしたことがあり</p>\r\n「第1部1章2話 BATTLE2」をすでにクリアしているお客様</p>\r\n<br />\r\n<p class=\"newsHeadUnder\">■対応内容</p>\r\n原点の器1個</p>\r\n<br />\r\n<p class=\"newsHeadUnder\">■対応日時</p>\r\n2020年12月28日 16:00</p>\r\n　<span class=\"c_red\"> ※プレゼントボックスよりお受け取りください。</span><br />\r\n<br />\r\n本不具合の修正は12月28日を予定しております。<br />\r\nお客様にはご迷惑をおかけしますことをお詫び申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2020-12-22 19:00:00",
+ "endAt": "2030-12-21 23:59:59",
+ "sortKey": 22105
+}
