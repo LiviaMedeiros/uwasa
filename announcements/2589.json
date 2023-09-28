@@ -1,0 +1,13 @@
+{
+ "id": 2589,
+ "displayOs": "ALL",
+ "category": "NEW",
+ "subject": "【重要】動作確認端末の変更について",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n7月30日19:00より、動作確認端末一覧を更新いたしました。<br />\r\n2021年8月1日より、Google Playにて32bit版アプリの配信が停止される予定です。<br />\r\n上記に伴い、バージョン2.3.9のアップデートより<br />\r\n32bit CPUを搭載したAndroid端末を非対応といたしました。<br />\r\n更新後の動作確認端末一覧につきましては、こちらをご確認ください。<br />\r\n<p class=\"mb20\"></p>\r\n<p class=\"btn b_pink TE announceOuterLink\" style=\"width:230px;\" data-outlink=\"https://faq.magireco.com/faq/show/342?site_domain=default\">\r\n\t<span class=\"b_screen\"></span>\r\n\t<span>詳細はこちら</span></p>\r\n<p class=\"mb10\"></p>\r\n<br />\r\n<span class=\"c_red\">\r\n※対応端末ではない場合、ゲームが正常に動作しなくなる可能性がございますので<br />\r\n　ご注意ください。<br />\r\n</span><br />\r\nご利用のお客様にはご迷惑をおかけいたしますが、ご理解とご協力頂けますよう<br />\r\nお願い申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2021-07-30 19:00:00",
+ "endAt": "2031-07-30 23:59:59",
+ "sortKey": 25890
+}

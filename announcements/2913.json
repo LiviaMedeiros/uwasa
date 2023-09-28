@@ -1,0 +1,13 @@
+{
+ "id": 2913,
+ "displayOs": "ALL",
+ "category": "UPD",
+ "subject": "【不具合修正】2月15日16:00時点<br />【17:00追記】",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n<div class=\"commonFrame3\" style=\"padding-top:33px;\">\r\n    <h2>2月21日17:00追記</h2>\r\n    　対象のお客様に補填をいたしました。<br />\r\n    　お客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n</div>\r\n<br />\r\n以下の不具合を修正いたしました。<br />\r\nまた、本不具合におきまして対象のお客様に補填をいたします。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■内容</p>\r\n・精神強化<br />\r\n　「佐倉杏子 ドッペルver.」の精神強化マスを開放する際<br />\r\n　一部の必要アイテムが二重に消費されるように表示されている不具合<br />\r\n<br />\r\n<span class=\"c_red\">\r\n※表示上の不具合となり、実際には表示上通りにアイテムは消費されません。<br />\r\n</span>\r\n<br />\r\n　　　　　　例)<br />\r\n<img src=\"/magica/resource/image_web/announce/announce_2202152.png\" class=\"announceImg\" style=\"display: block;margin: 0 auto;\">\r\n<p class=\"mb20\"></p>\r\n二重に消費されるように表示されていたアイテム<br />\r\n・上記画像の赤枠：消費されないにもかかわらず表示されていたアイテム<br />\r\n・上記画像の青枠：消費されるアイテム<br />\r\n<br />\r\n全ての精神強化マスに共通して<br />\r\n上記画像の赤枠内に、実際には消費されないアイテムが表示されておりましたため<br />\r\n赤枠内のアイテムが表示されないように修正いたしました。<br />\r\n<br />\r\n<span class=\"c_red\">\r\n※本不具合に対する調査で、赤枠内のアイテムは実際には<br />\r\n　消費されていないことを確認しております。<br />\r\n</span>\r\n<br />\r\n現在は、赤枠内のアイテムが表示されていないことを確認しております。<br />\r\n本不具合に対して、ご迷惑をおかけしたお詫びとして<br />\r\n対象のお客様に下記補填をいたします。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対象のお客様</p>\r\n2021年11月7日15:00以降に1度でもログインしたことがあり<br />\r\n「メインストーリー第1部1章2話BATTLE2」をすでにクリアしているお客様<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■補填内容</p>\r\n・原点の器 1個<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対応日時</p>\r\n2022年2月21日メンテナンス時<br />\r\n<br />\r\n<span class=\"c_red\">\r\n※プレゼントボックスよりお受け取りください。<br />\r\n※修正が反映されない場合は、アプリ再起動をお試しください。<br />\r\n</span>\r\n<br />\r\nお客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "htmlPath": "",
+ "imgPath": "",
+ "hiddenUnderMaintenance": false,
+ "startAt": "2022-02-21 17:00:00",
+ "endAt": "2032-02-15 23:59:59",
+ "sortKey": 29141
+}
