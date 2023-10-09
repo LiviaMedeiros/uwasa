@@ -38,6 +38,13 @@ const updateVariable = async ([name, value]) =>
     if (!ok) throw status;
   });
 
+class Soul extends Error {
+  constructor(cause) {
+    super(`do not throw ${cause?.name}`, { cause });
+    this.name = this.constructor.name;
+  }
+}
+
 class announcements {
   static id = UWASA_LAST |0;
   constructor() {
@@ -46,8 +53,8 @@ class announcements {
   }
 }
 
-const getResponse = async () => {
-  return Promise.any(ORIGINS.map(async $ => {
+const getResponse = async () =>
+  Promise.any(ORIGINS.map(async $ => {
     const response = await fetch(new URL(UWASA_ANNOUNCEMENTS, $), {
       headers: {
         'User-Agent': USER_AGENT,
@@ -59,17 +66,16 @@ const getResponse = async () => {
     if (response.status === 304)
       return NOT_MODIFIED;
     if (!response.ok)
-      throw new Error('Bad response', { cause: response.status });
+      throw new Soul(response.status);
     if (!response.headers.get('Content-Type')?.startsWith('application/json')) {
       // Assume:
       // Last-Modified: Mon, 26 Nov 2018 06:45:05 GMT
       // Content-Type: text/html
       // Content-Length: 6351 # not included but whatever
-      throw Error;
+      throw Soul;
     }
     return response;
   }));
-};
 
 const getAnnouncements = async ({ id } = announcements) => {
   const response = await getResponse();
