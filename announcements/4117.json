@@ -3,11 +3,11 @@
  "displayOs": "ALL",
  "category": "UPD",
  "subject": "【補填】メンテナンス延長のお詫び",
- "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n<!--<div class=\"commonFrame3\" style=\"padding-top:33px;\">\r\n<h2>　1月12日16:00追記</h2>\r\n　対象のお客様に補填をいたしました。<br />\r\n　お客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n</div>\r\n<br />-->\r\n2023年12月18日のメンテナンス延長のお詫びとして補填をいたします。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対象のお客様</p>\r\n2023年10月4日15:00以降に1度でもログインしたことがあり<br />\r\n「メインストーリー第1部1章2話BATTLE2」をすでにクリアしているお客様<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■補填内容</p>\r\nマギアストーン　15個<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対応日時</p>\r\n2024年1月12日メンテナンス時<br />\r\n<br />\r\nお客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
+ "text": "『マギアレコード 魔法少女まどか☆マギカ外伝』をご利用いただき誠にありがとうございます。<br />\r\n<br />\r\n<div class=\"commonFrame3\" style=\"padding-top:33px;\">\r\n<h2>　1月12日16:00追記</h2>\r\n　対象のお客様に補填をいたしました。<br />\r\n　お客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n</div>\r\n<br />\r\n2023年12月18日のメンテナンス延長のお詫びとして補填をいたします。<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対象のお客様</p>\r\n2023年10月4日15:00以降に1度でもログインしたことがあり<br />\r\n「メインストーリー第1部1章2話BATTLE2」をすでにクリアしているお客様<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■補填内容</p>\r\nマギアストーン　15個<br />\r\n<br />\r\n<p class=\"newsHeadUnder\">■対応日時</p>\r\n2024年1月12日メンテナンス時<br />\r\n<br />\r\nお客様にはご迷惑をおかけしましたことをお詫び申し上げます。<br />\r\n<br />\r\n今後とも『マギアレコード 魔法少女まどか☆マギカ外伝』をよろしくお願いいたします。<br />",
  "htmlPath": "",
  "imgPath": "",
- "hiddenUnderMaintenance": false,
- "startAt": "2023-12-18 16:55:00",
+ "hiddenUnderMaintenance": true,
+ "startAt": "2024-01-12 15:10:00",
  "endAt": "2033-12-18 23:59:59",
- "sortKey": 41170
+ "sortKey": 41491
 }
